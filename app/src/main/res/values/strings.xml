@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PictureMatchingGame</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="restart_game">Restart Game</string>
+    <string name="count_start_text">Click Count: 0</string>
+    <string name="win_condition_text">YOU WIN! Play Again?</string>
+</resources>
