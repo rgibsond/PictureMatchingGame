@@ -3,9 +3,18 @@
     android:layout_height="match_parent"
      android:layout_width="match_parent">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/check_win_button"
+        android:text="Check Win"
+        style="@style/button_style"
+        android:textSize="@dimen/button_text_size"/>
+
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/check_win_button"
         tools:context="com.example.rgdrys13.picturematchinggame.GameFragment"
         android:id="@+id/grid">
 
@@ -178,9 +187,31 @@
             />
     </GridLayout>
 
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/count_id"
+        android:layout_below="@id/grid"
+        android:text="@string/count_start_text"
+        android:textSize="@dimen/count_text_size"
+        android:textColor="@color/button_text"
+        />
+
+    <TextView
+        android:id="@+id/win_text"
+        android:layout_below="@id/grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/button_text"
+        android:visibility="gone"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/count_text_size"
+        android:text="@string/win_condition_text"/>
+
     <Button
         android:id="@+id/my_button"
-        android:layout_below="@id/grid"
 
         android:text="@string/restart_game"
         android:textColor="#FFFFFF"
@@ -194,28 +225,9 @@
         android:shadowDy="0"
         android:shadowRadius="5"
         android:padding="@dimen/image_padding"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/count_id"
-        android:layout_toRightOf="@id/my_button"
-        android:layout_below="@id/grid"
-        android:text="@string/count_start_text"
-        android:textSize="@dimen/count_text_size"
-        android:textColor="@color/button_text"
-        />
-
-    <TextView
-        android:id="@+id/win_text"
-        android:layout_below="@id/my_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/button_text"
-        android:visibility="gone"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/count_text_size"
-        android:text="@string/win_condition_text"/>
+        android:layout_above="@+id/grid"
+        android:layout_toEndOf="@+id/check_win_button"
+        android:layout_marginStart="12dp"
+        android:layout_alignTop="@+id/check_win_button" />
 
 </RelativeLayout>

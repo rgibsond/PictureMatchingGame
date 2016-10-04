@@ -19,7 +19,7 @@ public class GameFragment extends Fragment {
     public static final int NUMBER_OF_PAIRS = 12;
 
     Initializer initializer;
-    Button resetButton;
+    Button resetButton, winButton;
     int clickCount;
     ArrayList<ImageButton> selected;
     TextView winText;
@@ -35,6 +35,7 @@ public class GameFragment extends Fragment {
         winText = (TextView) root.findViewById(R.id.win_text);
         initializer = new Initializer(this);
         resetButton = (Button) root.findViewById(R.id.my_button);
+        winButton = (Button) root.findViewById(R.id.check_win_button);
         initializer.initViews(root);
         selected = new ArrayList();
         sp = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
@@ -50,11 +51,21 @@ public class GameFragment extends Fragment {
             }
         });
 
+        winButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selected.size()==NUMBER_OF_PAIRS*2)
+                    winCondition();
+            }
+        });
+
         return root;
     }
 
     public void onImageClick(View view, Resources res)  {
         ImageButton image = (ImageButton)view;
+        if (image.isSelected())
+            return;
         if (!initializer.correct.contains(initializer.imageGridLocations[initializer.buttonLocations.get(image).x][initializer.buttonLocations.get(image).y])) {
             if (selected.size() < initializer.correct.size() * 2 + 2) {
                 clickCount++;
@@ -93,10 +104,6 @@ public class GameFragment extends Fragment {
                 }
             }
         }
-        if (initializer.correct.size()==NUMBER_OF_PAIRS){
-            sp.play(airhorn, 1f, 1f, 1, 3, 1f);
-            winText.setVisibility(View.VISIBLE);
-        }
     }
 
     //if true, returns ID of image
@@ -105,6 +112,11 @@ public class GameFragment extends Fragment {
         int firstPictureID = initializer.imageGridLocations[initializer.buttonLocations.get(first).x][initializer.buttonLocations.get(first).y];
         int secondPictureID = initializer.imageGridLocations[initializer.buttonLocations.get(second).x][initializer.buttonLocations.get(second).y];
         return  (firstPictureID == secondPictureID ? firstPictureID:0);
+    }
+
+    public void winCondition(){
+        sp.play(airhorn, 1f, 1f, 1, 3, 1f);
+        winText.setVisibility(View.VISIBLE);
     }
 
 }
